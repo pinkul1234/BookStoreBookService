@@ -122,9 +122,9 @@ public class SpringFoxConfig implements WebMvcConfigurer {
 
     private ApiInfo apiInfo() {
 
-        return new ApiInfo("LMSProject", "APIs for E.", "1.0", "Terms of service",
+        return new ApiInfo("BookStoreProject", "APIs for E.", "1.0", "Terms of service",
 
-                new Contact("LmsProject", "http://bridgelabz.lmsproject", "pinkul5555@gmail.com"),
+                new Contact("BookStoreProject", "http://bridgelabz.bookstorebookservice", "pinkul5555@gmail.com"),
 
                 "Apache 2.0",
 

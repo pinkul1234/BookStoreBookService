@@ -12,13 +12,18 @@ public class BookModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
+    @Column(name = "bookName")
     private String bookName;
+    @Column(name = "author")
     private String author;
+    @Column(name = "description")
     private String description;
+    @Column(name = "logo")
     private String logo;
-    private Long price;
-    private Long quantity;
+    @Column(name = "price")
+    private int price;
+    @Column(name = "quantity")
+    private int quantity;
 
     public BookModel(BookDto bookDto){
         this.bookName = bookDto.getBookName();

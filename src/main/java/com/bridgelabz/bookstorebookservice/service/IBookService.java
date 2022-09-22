@@ -14,4 +14,8 @@ public interface IBookService {
     List<BookModel> getBookData(String token);
 
     Response deleteBook(Long userId, String token);
+
+    Response changeQuantity(Long id, Integer quantity, String token);
+
+    Response changePrice(Long id, Integer price, String token);
 }

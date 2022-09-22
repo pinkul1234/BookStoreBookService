@@ -36,6 +36,15 @@ public class BookController {
         Response response = bookService.deleteBook(userId, token);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
-
+    @PutMapping("/changequantity/{id}")
+    public ResponseEntity<Response> changeQuantity(@PathVariable Long id,@RequestParam Integer quantity,  @RequestHeader String token) {
+        Response response = bookService.changeQuantity(id, quantity, token);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+    @PutMapping("/changeprice/{id}")
+    public ResponseEntity<Response> changePrice(@PathVariable Long id,@RequestParam Integer price,  @RequestHeader String token) {
+        Response response = bookService.changePrice(id, price, token);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 
 }

@@ -77,4 +77,34 @@ public class BookService implements IBookService {
         }
         throw new BookNotFoundException(400, "Token is wrong");
     }
+
+    @Override
+    public Response changeQuantity(Long id, Integer quantity, String token) {
+        boolean isUserPresent = restTemplate.getForObject("http://localhost:8082/user/validate/" + token, Boolean.class);
+        if (isUserPresent) {
+            Optional<BookModel> isBooksPresent = bookRepository.findById(id);
+            if (isBooksPresent.isPresent()) {
+                isBooksPresent.get().setQuantity(isBooksPresent.get().getQuantity()+quantity);
+                bookRepository.save(isBooksPresent.get());
+                return new Response("success", 200, isBooksPresent.get());
+            }
+            throw new BookNotFoundException(400, "Book Not Found");
+        }
+        throw new BookNotFoundException(400, "User Not Found");
+    }
+
+    @Override
+    public Response changePrice(Long id, Integer price, String token) {
+        boolean isUserPresent = restTemplate.getForObject("http://localhost:8082/user/validate/" + token, Boolean.class);
+        if (isUserPresent) {
+            Optional<BookModel> isBooksPresent = bookRepository.findById(id);
+            if (isBooksPresent.isPresent()) {
+                isBooksPresent.get().setPrice(price);
+                bookRepository.save(isBooksPresent.get());
+                return new Response("success", 200, isBooksPresent.get());
+            }
+            throw new BookNotFoundException(400, "Book Not Found");
+        }
+        throw new BookNotFoundException(400, "User Not Found");
+    }
 }
