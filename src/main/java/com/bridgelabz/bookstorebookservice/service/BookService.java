@@ -107,4 +107,25 @@ public class BookService implements IBookService {
         }
         throw new BookNotFoundException(400, "User Not Found");
     }
-}
+
+        @Override
+        public Response validateBookId(Long bookId) {
+            Optional<BookModel> isUserPresent = bookRepository.findById(bookId);
+            if (isUserPresent.isPresent()) {
+                return new Response("success", 200 ,isUserPresent.get());
+            }
+            throw new BookNotFoundException(500, "User Not Found");
+        }
+    @Override
+    public Response updateBookQuantity(Long bookId, Integer bookQuantity) {
+        Optional<BookModel> isBooksPresent = bookRepository.findById(bookId);
+        if (isBooksPresent.isPresent()) {
+            isBooksPresent.get().setQuantity(isBooksPresent.get().getQuantity() - bookQuantity);
+            bookRepository.save(isBooksPresent.get());
+            return new Response("Success",200,isBooksPresent.get());
+        }
+        throw new BookNotFoundException(500, "Book Not Found");
+    }
+
+    }
+

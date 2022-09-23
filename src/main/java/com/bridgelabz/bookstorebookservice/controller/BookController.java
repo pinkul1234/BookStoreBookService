@@ -46,5 +46,13 @@ public class BookController {
         Response response = bookService.changePrice(id, price, token);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
-
+    @GetMapping("/validatebookId/{bookId}")
+    public Response validateBookId(@PathVariable Long bookId) {
+        return bookService.validateBookId(bookId);
+    }
+    @GetMapping("/updatebookquantity/{bookId}/{bookQuantity}")
+    public Response updateBookQuantity(@PathVariable Long bookId, @PathVariable Integer bookQuantity) {
+        Response book =bookService.updateBookQuantity(bookId,bookQuantity);
+        return new Response("user found", 200, book);
+    }
 }

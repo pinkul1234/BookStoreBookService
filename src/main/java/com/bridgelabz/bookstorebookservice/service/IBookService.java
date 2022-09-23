@@ -18,4 +18,8 @@ public interface IBookService {
     Response changeQuantity(Long id, Integer quantity, String token);
 
     Response changePrice(Long id, Integer price, String token);
+
+    Response validateBookId(Long bookId);
+
+    Response updateBookQuantity(Long bookId, Integer bookQuantity);
 }
