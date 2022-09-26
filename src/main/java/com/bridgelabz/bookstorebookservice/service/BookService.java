@@ -28,7 +28,7 @@ public class BookService implements IBookService {
 
     @Override
     public Response addBook(BookDto bookDto, String token) {
-        boolean isUserPresent = restTemplate.getForObject("http://localhost:8082/user/validate/" + token, Boolean.class);
+        boolean isUserPresent = restTemplate.getForObject("http://USER-SERVICE:8082/user/validate/" + token, Boolean.class);
         if (isUserPresent) {
             BookModel bookModel = new BookModel(bookDto);
             bookRepository.save(bookModel);
@@ -39,7 +39,7 @@ public class BookService implements IBookService {
 
     @Override
     public Response updateBook(Long userId, String token, BookDto bookDto) {
-        boolean isUserPresent = restTemplate.getForObject("http://localhost:8082/user/validate/" + token, Boolean.class);
+        boolean isUserPresent = restTemplate.getForObject("http://USER-SERVICE:8082/user/validate/" + token, Boolean.class);
         if (isUserPresent) {
             Optional<BookModel> isBookPresent = bookRepository.findById(userId);
             if (isBookPresent.isPresent()) {
@@ -58,7 +58,7 @@ public class BookService implements IBookService {
 
     @Override
     public List<BookModel> getBookData(String token) {
-        boolean isUserPresent = restTemplate.getForObject("http://localhost:8082/user/validate/" + token, Boolean.class);
+        boolean isUserPresent = restTemplate.getForObject("http://USER-SERVICE:8082/user/validate/" + token, Boolean.class);
         if (isUserPresent) {
             List<BookModel> isBookPresent = bookRepository.findAll();
             return isBookPresent;
@@ -67,7 +67,7 @@ public class BookService implements IBookService {
     }
     @Override
     public Response deleteBook(Long userId, String token) {
-        boolean isUserPresent = restTemplate.getForObject("http://localhost:8082/user/validate/" + token, Boolean.class);
+        boolean isUserPresent = restTemplate.getForObject("http://USER-SERVICE:8082/user/validate/" + token, Boolean.class);
         if(isUserPresent){
             Optional<BookModel> isBookPresent = bookRepository.findById(userId);
             if (isBookPresent.isPresent()){
@@ -80,7 +80,7 @@ public class BookService implements IBookService {
 
     @Override
     public Response changeQuantity(Long id, Integer quantity, String token) {
-        boolean isUserPresent = restTemplate.getForObject("http://localhost:8082/user/validate/" + token, Boolean.class);
+        boolean isUserPresent = restTemplate.getForObject("http://USER-SERVICE:8082/user/validate/" + token, Boolean.class);
         if (isUserPresent) {
             Optional<BookModel> isBooksPresent = bookRepository.findById(id);
             if (isBooksPresent.isPresent()) {
@@ -95,7 +95,7 @@ public class BookService implements IBookService {
 
     @Override
     public Response changePrice(Long id, Integer price, String token) {
-        boolean isUserPresent = restTemplate.getForObject("http://localhost:8082/user/validate/" + token, Boolean.class);
+        boolean isUserPresent = restTemplate.getForObject("http://USER-SERVICE:8082/user/validate/" + token, Boolean.class);
         if (isUserPresent) {
             Optional<BookModel> isBooksPresent = bookRepository.findById(id);
             if (isBooksPresent.isPresent()) {
